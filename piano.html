@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+     <link rel="stylesheet" href="css/nav.css">
+     <link rel="stylesheet" href="css/main.css">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="pos-f-t">
+      <div class="collapse" id="navbarToggleExternalContent">
+      </div>
+      <nav class="navbar navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" onclick="openNav()" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    </div>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <!-- <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a> -->
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Scales
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="c">
+                <label class="form-check-label" for="defaultCheck1">
+                  C Major
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="g">
+                <label class="form-check-label" for="defaultCheck1">
+                  G Major
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="d">
+                <label class="form-check-label" for="defaultCheck1">
+                  D Major
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="a">
+                <label class="form-check-label" for="defaultCheck1">
+                  A Major
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="e">
+                <label class="form-check-label" for="defaultCheck1">
+                  E Major
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Chord Types
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="form-check">
+                <input class="form-check-input chordCheck" type="checkbox" value="triads">
+                <label class="form-check-label" for="defaultCheck1">
+                  Triads
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input chordCheck" type="checkbox" value="sevenths">
+                <label class="form-check-label" for="defaultCheck1">
+                  Sevenths
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Settings
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-success" onclick="applySettings()">Apply</button>
+
+    </div>
+    <h1 class = "scale-title" id = "current">CMaj</h1>
+    <div class = "container flex">
+        <div><button type="button" class="piano-note btn btn-light white-key c b# 1">c</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key d 3">d</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key e fb 5">e</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key f e# 6">f</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key g 8">g</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key a 10">a</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key b cb 12">b</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key c b# 13">c</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key d 15">d</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key e fb 17">e</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key f e# 18">f</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key g 20">g</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key a 22">a</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key b cb 24">b</button></div>
+        <div><button type="button" class="piano-note btn btn-light white-key c b# 25">c</button></div>
+        <div class = "black-group">
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key c# db 2">c#/db</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first d# eb 4">d#/eb</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first invisible"></button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first f# gb 7">f#/gb</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first g# ab 9">g#/ab</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first a# bb 11">a#/bb</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first invisible"></button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first c# db 14">c#/db</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first d# eb 16">d#/eb</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first invisible"></button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first f# gb 19">f#/gb</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first g# ab 21">g#/ab</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first a# bb 23">a#/bb</button></div>
+          <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first invisible"></button></div>
+        </div>
+        
+                <!-- <button type="button" class="btn btn-dark"></button> -->
+    </div>
+     <button type="button" class="btn btn-warning" onclick="randomize()">Next</button>
+    <button type="button" class="btn btn-warning" onclick="updateKeys()">Show Answer</button>
+    <button type="button" class="btn btn-success" onclick="checkAnswer()">Check Answer</button>
+    <h1 id = "currentScale">C</h1>
+    <!-- <h2>Number of Sharps</h2>
+    <h3 id = "numSharps">0</h3>
+    <h2>Number of Flats</h2>
+    <h3 id = "numFlats">0</h3> -->
+    <h2>Correct</h2>
+    <h3 id = "correct">0</h3>
+    <h2>Incorrect</h2>
+    <h3 id = "incorrect">0</h3>
+    <h2>Number of Questions</h2>
+    <h3 id = "numQuestions">0</h3>
+
+   
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="js/nav.js"></script>
+    <script src="construct.js"></script>
+    <script src="js/piano.js"></script>
+    <script src="scales.js"></script>
+  </body>
+</html>
