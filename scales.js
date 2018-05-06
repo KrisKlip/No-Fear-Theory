@@ -15,6 +15,32 @@ var theory = {
 				6: [],
 				7: []
 			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
+				7: []
+			},
 			sevenths:{
 				1: [],
 				2: [],
@@ -38,6 +64,32 @@ var theory = {
 				4: [],
 				5: [],
 				6: [],
+				7: []
+			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
 				7: []
 			},
 			sevenths:{
@@ -65,6 +117,32 @@ var theory = {
 				6: [],
 				7: []
 			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
+				7: []
+			},
 			sevenths:{
 				1: [],
 				2: [],
@@ -90,6 +168,32 @@ var theory = {
 				6: [],
 				7: []
 			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
+				7: []
+			},
 			sevenths:{
 				1: [],
 				2: [],
@@ -113,6 +217,32 @@ var theory = {
 				4: [],
 				5: [],
 				6: [],
+				7: []
+			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
 				7: []
 			},
 			sevenths:{
@@ -141,6 +271,32 @@ var theory = {
 				6: [],
 				7: []
 			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
+				7: []
+			},
 			sevenths:{
 				1: [],
 				2: [],
@@ -165,6 +321,32 @@ var theory = {
 				4: [],
 				5: [],
 				6: [],
+				7: []
+			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
 				7: []
 			},
 			sevenths:{
@@ -193,6 +375,32 @@ var theory = {
 				6: [],
 				7: []
 			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
+				7: []
+			},
 			sevenths:{
 				1: [],
 				2: [],
@@ -216,6 +424,32 @@ var theory = {
 				4: [],
 				5: [],
 				6: [],
+				7: []
+			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
 				7: []
 			},
 			sevenths:{
@@ -243,6 +477,32 @@ var theory = {
 				6: [],
 				7: []
 			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
+				7: []
+			},
 			sevenths:{
 				1: [],
 				2: [],
@@ -266,6 +526,32 @@ var theory = {
 				4: [],
 				5: [],
 				6: [],
+				7: []
+			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
 				7: []
 			},
 			sevenths:{
@@ -293,6 +579,32 @@ var theory = {
 				6: [],
 				7: []
 			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
+				7: []
+			},
 			sevenths:{
 				1: [],
 				2: [],
@@ -316,6 +628,32 @@ var theory = {
 				4: [],
 				5: [],
 				6: [],
+				7: []
+			},
+			majortriads:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minortriads:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedtriads:{
+				7: []
+			},
+			majorsevenths:{
+				1: [],
+				4: [],
+				5: []
+			},
+			minorsevenths:{
+				2: [],
+				3: [],
+				6: []
+			},
+			diminishedsevenths:{
 				7: []
 			},
 			sevenths:{

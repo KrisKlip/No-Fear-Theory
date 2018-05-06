@@ -6,7 +6,13 @@ $(document).ready(function() {
 	Object.keys(scales).forEach(function(key1) {
 		var notes = scales[key1].notes;
 		var triads = scales[key1].triads
+		var majortriads = scales[key1].majortriads
+		var minortriads = scales[key1].minortriads
+		var diminishedtriads = scales[key1].diminishedtriads
 		var sevenths = scales[key1].sevenths
+		var majorsevenths = scales[key1].majorsevenths
+		var minorsevenths = scales[key1].minorsevenths
+		var diminishedsevenths = scales[key1].diminishedsevenths
 		var currentChord = [];
 		var i = 0
 		Object.keys(triads).forEach(function(key2) {
@@ -23,8 +29,19 @@ $(document).ready(function() {
 			currentChord = [notes[i], notes[three], notes[five]]
 			
 			triads[key2] = currentChord;
+			if(key2 == "1" || key2 == "4"||key2 == "5"){
+				majortriads[key2] = currentChord
+			}
+			if(key2 == "2" || key2 == "3"||key2 == "6"){
+				minortriads[key2] = currentChord
+			}
+			if(key2 == "7"){
+				diminishedtriads[key2] = currentChord
+			}
+
+			// console.log(key2)
 			i ++;
-		  // console.log(key2, triads[key2]);
+		  // console.log(key2, majortriads[key2]);
 		});
 		i = 0;
 		Object.keys(sevenths).forEach(function(key2) {
@@ -45,6 +62,15 @@ $(document).ready(function() {
 			currentChord = [notes[i], notes[three], notes[five],  notes[seven]]
 			
 			sevenths[key2] = currentChord;
+			if(key2 == "1" || key2 == "4"||key2 == "5"){
+				majorsevenths[key2] = currentChord
+			}
+			if(key2 == "2" || key2 == "3"||key2 == "6"){
+				minorsevenths[key2] = currentChord
+			}
+			if(key2 == "7"){
+				diminishedsevenths[key2] = currentChord
+			}
 			i ++;
 		  // console.log(key2, sevenths[key2]);
 		});

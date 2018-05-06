@@ -96,7 +96,7 @@ var numberCorrect = 0;
 var numberIncorrect = 0;
 var numQuestions = 0;
 var scaleSelectionArray = ["c", "g"]
-var chordTypeSelectionArray = ["sevenths","triads"];
+var chordTypeSelectionArray = ["sevenths","majortriads","minortriads","diminishedtriads"];
 
 function findRandomChord() {
 
@@ -125,7 +125,7 @@ function randomize() {
 	currentChordsNotes = [];
 	var scales = theory.scales
 	Object.keys(scales).forEach(function(key1) {
-		console.log(key1)
+		// console.log(key1)
 		for(var i =0; i<scaleSelectionArray.length;i++){
 			if(key1 == scaleSelectionArray[i]){
 				allScales.push(key1)
@@ -348,8 +348,48 @@ $('.scaleCheck').change(function() {
     console.log(scaleSelectionArray)
 });
 $('.chordCheck').change(function() {
-    // this will contain a reference to the checkbox   
+    // this will contain a reference to the checkbox 
     var value = $(this).val();
+    if(value == "triads"){
+    	$("#majortriads").prop('checked', false);
+    	$("#minortriads").prop('checked', false);
+    	$("#diminishedtriads").prop('checked', false);
+    	for(var j = 0; j<4; j++){
+    		for(var i = 0; i<chordTypeSelectionArray.length;i++){
+	        	if(chordTypeSelectionArray[i]=="majortriads" || chordTypeSelectionArray[i] == "minortriads"|| chordTypeSelectionArray[i]=="diminishedtriads"){
+	        		chordTypeSelectionArray.splice(i,1);
+	        	}
+	        }
+    	}
+    }
+    if(value == "majortriads" || value == "minortriads" || value == "diminishedtriads"){
+    	$("#triads").prop('checked', false);
+    	for(var i = 0; i<chordTypeSelectionArray.length;i++){
+        	if(chordTypeSelectionArray[i]=="triads"){
+        		chordTypeSelectionArray.splice(i,1);
+        	}
+        }
+    }
+    if(value == "sevenths"){
+    	$("#majorsevenths").prop('checked', false);
+    	$("#minorsevenths").prop('checked', false);
+    	$("#diminishedsevenths").prop('checked', false);
+    	for(var j = 0; j<4; j++){
+    		for(var i = 0; i<chordTypeSelectionArray.length;i++){
+	        	if(chordTypeSelectionArray[i]=="majorsevenths" || chordTypeSelectionArray[i] == "minorsevenths"|| chordTypeSelectionArray[i]=="diminishedsevenths"){
+	        		chordTypeSelectionArray.splice(i,1);
+	        	}
+	        }
+    	}
+    }
+    if(value == "majorsevenths" || value == "minorsevenths" || value == "diminishedsevenths"){
+    	$("#sevenths").prop('checked', false);
+    	for(var i = 0; i<chordTypeSelectionArray.length;i++){
+        	if(chordTypeSelectionArray[i]=="sevenths"){
+        		chordTypeSelectionArray.splice(i,1);
+        	}
+        }
+    }
     if (this.checked) {
     	var canAppend = true;
         for(var i = 0; i<chordTypeSelectionArray.length;i++){
