@@ -30,7 +30,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -81,7 +83,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -132,7 +136,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -183,7 +189,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -234,7 +242,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -286,7 +296,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -338,7 +350,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -390,7 +404,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -441,7 +457,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -492,7 +510,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -543,7 +563,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -594,7 +616,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{
@@ -645,7 +669,9 @@ var theory = {
 			},
 			majorsevenths:{
 				1: [],
-				4: [],
+				4: []
+			},
+			dominantsevenths:{
 				5: []
 			},
 			minorsevenths:{

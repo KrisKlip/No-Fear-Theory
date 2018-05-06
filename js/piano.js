@@ -196,8 +196,17 @@ function changeChordName(chordName){
 	var name;
 	var index = parseInt(chordName)
 	var index = index -1;
-	if(chordName == 1 || chordName == 4 || chordName == 5){
+	if(chordName == 1 || chordName == 4){
 		name = currentChordNotes[0].charAt(0).toUpperCase() + currentChordNotes[0].charAt(1) + "Maj"
+		// console.log(name);
+	}
+	if(chordName == 5){
+		if(currentChordNotes.length< 4){
+			name = currentChordNotes[0].charAt(0).toUpperCase() + currentChordNotes[0].charAt(1) + "Maj"
+		}
+		else{
+			name = currentChordNotes[0].charAt(0).toUpperCase() + currentChordNotes[0].charAt(1)
+		}
 		// console.log(name);
 	}
 	if(chordName == 2 || chordName == 3 || chordName == 6){
@@ -208,7 +217,7 @@ function changeChordName(chordName){
 		name = currentChordNotes[0].charAt(0).toUpperCase() + currentChordNotes[0].charAt(1) + "Dim"
 		// console.log(name);
 	}
-	if(currentChordNotes.length == 4){
+	if(currentChordNotes.length > 3){
 		name = name + "7"
 	}
 	return(name);
@@ -376,13 +385,13 @@ $('.chordCheck').change(function() {
     	$("#diminishedsevenths").prop('checked', false);
     	for(var j = 0; j<4; j++){
     		for(var i = 0; i<chordTypeSelectionArray.length;i++){
-	        	if(chordTypeSelectionArray[i]=="majorsevenths" || chordTypeSelectionArray[i] == "minorsevenths"|| chordTypeSelectionArray[i]=="diminishedsevenths"){
+	        	if(chordTypeSelectionArray[i]=="majorsevenths" || chordTypeSelectionArray[i] == "minorsevenths"|| chordTypeSelectionArray[i]=="diminishedsevenths" || chordTypeSelectionArray[i] == "dominantsevenths"){
 	        		chordTypeSelectionArray.splice(i,1);
 	        	}
 	        }
     	}
     }
-    if(value == "majorsevenths" || value == "minorsevenths" || value == "diminishedsevenths"){
+    if(value == "majorsevenths" || value == "minorsevenths" || value == "diminishedsevenths" || value == "dominantsevenths"){
     	$("#sevenths").prop('checked', false);
     	for(var i = 0; i<chordTypeSelectionArray.length;i++){
         	if(chordTypeSelectionArray[i]=="sevenths"){

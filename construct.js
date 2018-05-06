@@ -13,6 +13,7 @@ $(document).ready(function() {
 		var majorsevenths = scales[key1].majorsevenths
 		var minorsevenths = scales[key1].minorsevenths
 		var diminishedsevenths = scales[key1].diminishedsevenths
+		var dominantsevenths = scales[key1].dominantsevenths
 		var currentChord = [];
 		var i = 0
 		Object.keys(triads).forEach(function(key2) {
@@ -64,6 +65,9 @@ $(document).ready(function() {
 			sevenths[key2] = currentChord;
 			if(key2 == "1" || key2 == "4"||key2 == "5"){
 				majorsevenths[key2] = currentChord
+			}
+			if(key2 == "5"){
+				dominantsevenths[key2] = currentChord
 			}
 			if(key2 == "2" || key2 == "3"||key2 == "6"){
 				minorsevenths[key2] = currentChord
