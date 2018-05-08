@@ -4,9 +4,9 @@ $(document).ready(function() {
 	var whiteKeyWidth = pianoWidth/15;
 	var blackKeyWidth = whiteKeyWidth * 0.8;
 	var paddingAmt = whiteKeyWidth - (blackKeyWidth/2);
-	console.log(whiteKeyWidth)
-	$(".white-key").outerWidth(whiteKeyWidth)
-	$(".black-key").outerWidth(blackKeyWidth)
+	// console.log(whiteKeyWidth)
+	$(".white-key").outerWidth(whiteKeyWidth-2)
+	$(".black-key").outerWidth(blackKeyWidth-2)
 	$(".black-group").css("padding-left", paddingAmt)
 	$(".not-first").css("margin-left", blackKeyWidth*0.25)
 
@@ -86,6 +86,8 @@ $(document).ready(function() {
 			// }
 		}
 	})
+	// $("#autoCheck").prop('checked', true);
+	// $("#autoNext").prop('checked', true);
 	randomize();
 });
 

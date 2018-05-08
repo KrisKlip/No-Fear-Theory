@@ -6,6 +6,7 @@
 }
 body{
 	padding: 0;
+	/*text-align: center;*/
 }
 .card-title{
 	text-decoration: underline;
@@ -14,7 +15,15 @@ body{
 	margin:0 auto;
 	margin-top: 20px;
 	max-width: 1500px;
-	margin-left: none;
+	text-align: center;
+	/*padding-left: -10px;*/
+	/*margin-left: no;*/
+}
+.container div{
+	/*margin-left: -5px;*/
+}
+.black-div{
+	/*margin-left: -5px;*/
 }
 .note{
 	font-size: 50px;
@@ -31,6 +40,7 @@ body{
 	/*width: 100px;*/
 	border: 1px solid black;
 	color:rgba(0, 0, 0, 0);
+	/*margin-left: -5px;*/
 
 
 }
@@ -40,21 +50,138 @@ body{
 	/*width: 80px;*/
 	border: 1px solid black;
 	color:rgba(0, 0, 0, 0);	
+	/*margin-left: -5px;*/
 }
 .flex{
 	display: flex;
   	justify-content: space-between;
   	position: relative;
+  	/*padding-right: 10px;*/
 }
 .black-group{
 	padding-left: 60px;
 	display: flex;
 	justify-content: space-between;
 	position: absolute;
+	/*margin-right: 5px !important;*/
 }
 .not-first{
 	margin-left: 20px;
 }
 .invisible{
 	visibility: hidden;
+}
+.checkAnswer{
+	/*margin:0 auto;
+	margin-top: 100px;
+	width: 300px !important;
+	height: 100px !important;*/
+	height: 60px;
+	width: 400px;
+}
+.top-info{
+	text-align: center;
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+	/*margin-bottom: 70px;*/
+}
+.top-info div{
+	display: inline-block;
+	text-align: center;
+}
+.top-info h2{
+	font-size: 1.5vw;
+	text-decoration: underline;
+}
+.top-info button{
+	font-size: 1.5em;
+	border-radius: 30px;
+}
+.stat{
+	/*border: 1px solid black;*/
+	width: 3vw;
+	height: 3vw;
+	vertical-align: middle;
+	border-radius: 100%;
+	text-align: center;
+	position: relative;
+	padding: 0;
+	color: white;
+	/*background-color: green;*/
+}
+.stat h3{
+	line-height: 3vw;
+	margin-top: -2px;
+}
+#correctDiv{
+	background-color: green;
+}
+#incorrectDiv{
+	background-color: red;
+}
+#numQuestionsDiv{
+	background-color: rgb(200, 200, 0);
+}
+.statContainer{
+	width: 150px;
+	float: left;
+}
+#nextButton{
+	float: right;
+	/*height: 100%;*/
+	/*display: inline-block;	*/
+	/*margin: 70px;*/
+}
+.next{
+	height: 60px;
+	width: 200px;
+	color: white;
+	/*display: none;*/
+	/*vertical-align: top;*/
+	/*margin:0 auto;*/
+	/*margin-top: 100px;*/
+	/*width: 500px !important;*/
+	/*height: 100px !important;*/
+	/*line-height: 100% !important;*/
+}
+#statsDiv{
+	float: left;
+}
+#currentScaleDiv{
+	margin: 0 auto;
+	/*margin-left: 150px;*/
+	/*display: inline-block;	*/
+	/*margin-top: 75px;*/
+}
+#currentScale{
+	/*visibility: hidden;*/
+	display: none;
+}
+.topStuff div {
+	display: inline-block;
+}
+.topStuff{
+	/*position: absolute;*/
+    top: 0;
+    width: 100%;
+    text-align: center;
+    z-index: -1;
+}
+#answeredStats{
+	float: right;
+}
+#checkAnswerBtn{
+	/*text-align: center;*/
+	/*display: none;*/
+	height: 60px;
+	width: 400px;
+}
+.showAnswer{
+	/*margin-top: 50px;*/
+	height: 60px;
+	width: 200px;
+	background-color: grey;
+	color: white;
 }

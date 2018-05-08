@@ -43,31 +43,79 @@
               <div class="form-check">
                 <input class="form-check-input scaleCheck" type="checkbox" value="c">
                 <label class="form-check-label" for="defaultCheck1">
-                  C Major
+                  C Major (0 Sharps 0 Flats)
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input scaleCheck" type="checkbox" value="g">
                 <label class="form-check-label" for="defaultCheck1">
-                  G Major
+                  G Major (1 Sharp)
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input scaleCheck" type="checkbox" value="d">
                 <label class="form-check-label" for="defaultCheck1">
-                  D Major
+                  D Major (2 Sharps)
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input scaleCheck" type="checkbox" value="a">
                 <label class="form-check-label" for="defaultCheck1">
-                  A Major
+                  A Major (3 Sharps)
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input scaleCheck" type="checkbox" value="e">
                 <label class="form-check-label" for="defaultCheck1">
-                  E Major
+                  E Major (4 Sharps)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="b">
+                <label class="form-check-label" for="defaultCheck1">
+                  B Major (5 Sharps)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="fs">
+                <label class="form-check-label" for="defaultCheck1">
+                  F# Major (6 Sharps)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="f">
+                <label class="form-check-label" for="defaultCheck1">
+                  F Major (1 Flat)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="bb">
+                <label class="form-check-label" for="defaultCheck1">
+                  Bb Major (2 Flats)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="eb">
+                <label class="form-check-label" for="defaultCheck1">
+                  Eb Major (3 Flats)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="ab">
+                <label class="form-check-label" for="defaultCheck1">
+                  Ab Major (4 Flats)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="db">
+                <label class="form-check-label" for="defaultCheck1">
+                  Db Major (5 Flats)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input scaleCheck" type="checkbox" value="gb">
+                <label class="form-check-label" for="defaultCheck1">
+                  Gb Major (6 Flats)
                 </label>
               </div>
             </div>
@@ -181,7 +229,8 @@
       <button type="button" class="btn btn-success" onclick="applySettings()">Apply</button>
 
     </div>
-    <h1 class = "scale-title" id = "current">CMaj</h1>
+      <div id ="currentScaleDiv"><h1 class = "scale-title" id = "current">CMaj</h1>
+      </div>
     <div class = "container flex">
         <div><button type="button" class="piano-note btn btn-light white-key c b# 1">c</button></div>
         <div><button type="button" class="piano-note btn btn-light white-key d 3">d</button></div>
@@ -215,22 +264,64 @@
           <div class = "black-div"><button type="button" class="piano-note btn btn-dark black-key not-first invisible"></button></div>
         </div>
         
-                <!-- <button type="button" class="btn btn-dark"></button> -->
+                <!-- <button type="button" class="btn btn-dark"></button> -->    
+        </div>
+    <div id = "checkAnswerBtn">
+      <!-- <div class = "topStuff">
+        <div id = "nextButton"><button type="button" class="btn btn-warning next" onclick="randomize()">Next</button></div>
+      </div> -->
+      <!-- <div id = "nextButton"><button type="button" class="btn btn-warning next" onclick="randomize()">Next</button></div> -->
     </div>
-     <button type="button" class="btn btn-warning" onclick="randomize()">Next</button>
-    <button type="button" class="btn btn-warning" onclick="updateKeys()">Show Answer</button>
-    <button type="button" class="btn btn-success" onclick="checkAnswer()">Check Answer</button>
+
+
+    <div class = "top-info">
+      <div id = "statsDiv">
+        <div>
+          <div class = "statContainer">
+            <h2>Correct</h2>
+            <div class = "stat" id = "correctDiv">
+              <h3 id = "correct">0</h3>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class = "statContainer">
+            <h2>Incorrect</h2>
+            <div class = "stat" id = "incorrectDiv">
+              <h3 id = "incorrect">0</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-warning showAnswer" onclick="updateKeys()">Show Answer</button>
+      <button type="button" class="btn btn-success checkAnswer" onclick="checkAnswer()">Check Answer</button>
+      <button type="button" class="btn btn-warning next" onclick="randomize()">Skip</button>
+      <div id = "answeredStats">
+        <div>
+          <div class = "statContainer">
+            <h2>Answered</h2>
+            <div class = "stat" id = "numQuestionsDiv">
+              <h3 id = "numQuestions">0</h3>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class = "statContainer">
+            <h2>Remaining</h2>
+            <div class = "stat" id = "numQuestionsDiv">
+              <h3 id = "numQuestions">0</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
     <h1 id = "currentScale">C</h1>
     <!-- <h2>Number of Sharps</h2>
     <h3 id = "numSharps">0</h3>
     <h2>Number of Flats</h2>
     <h3 id = "numFlats">0</h3> -->
-    <h2>Correct</h2>
-    <h3 id = "correct">0</h3>
-    <h2>Incorrect</h2>
-    <h3 id = "incorrect">0</h3>
-    <h2>Number of Questions</h2>
-    <h3 id = "numQuestions">0</h3>
+    
 
    
 
