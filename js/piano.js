@@ -28,10 +28,17 @@ $(document).ready(function() {
 		if($( this ).css("background-color") == "rgb(0, 0, 255)"){
 			$( this ).css("background-color", "#343a40")
 			$( this ).removeClass( "selected-key" );
+			if(autoCheck){
+				removeActiveChord($(this).val())
+			}
 		}
 		else{
 			$( this ).css("background-color", "rgb(0, 0, 255)")
 			$( this ).addClass( "selected-key" );
+			if(autoCheck){
+				addActiveChord($(this).val())
+			}
+			
 		}
 		// checkSelected();
 		
@@ -40,10 +47,16 @@ $(document).ready(function() {
 		if($( this ).css("background-color") == "rgb(0, 0, 255)"){
 			$( this ).css("background-color", "#f8f9fa")
 			$( this ).removeClass( "selected-key" );
+			if(autoCheck){
+				removeActiveChord($(this).val())
+			}
 		}
 		else{
 			$( this ).css("background-color", "rgb(0, 0, 255)")
 			$( this ).addClass( "selected-key" );
+			if(autoCheck){
+				addActiveChord($(this).val())
+			}
 		}
 		// checkSelected();
 		
@@ -73,6 +86,7 @@ $(document).ready(function() {
 			// }
 		}
 	})
+	randomize();
 });
 
 var currentScaleIndex;
@@ -98,15 +112,57 @@ var numQuestions = 0;
 var scaleSelectionArray = ["c", "g"]
 var chordTypeSelectionArray = ["sevenths","majortriads","minortriads","diminishedtriads"];
 
-function findRandomChord() {
+var midiMode = false;
+var scaleMode = false;
+var autoCheck = false;
+var autoNext = false;
 
+function findRandomChord(string) {
+	console.log(string)
 };
-
-function checkSelected() { 
+function addActiveChord(value){
+	note = parseInt(value)
+	// 		// add the note to the active chord array
+	if(note > octaveValue && note <octaveValue+26){
+		activeChord.push(note);
+	}
+	console.log(activeChord)
+// 		// If the array is the same length as the correct chord, compare
+	if (activeChord.length == currentChordNotes.length) {
+		var match = true;
+		checkAnswer();
+	}
+}
+function removeActiveChord(value){
+	console.log(activeChord)
+	note = parseInt(value)
+	// 		// add the note to the active chord array
+	if(note > octaveValue && note <octaveValue+26){
+		for(x in activeChord){
+			console.log(activeChord[x])
+			console.log(note)
+			if(note == activeChord[x]){
+				activeChord.splice(x,1)
+				console.log(activeChord);
+			}
+		}
+	}
+}
+function checkSelected(value) { 
 	// console.log("checking")
-	$( ".selected-key" ).each(function( index ) {
-	  console.log( index + ": " + $( this ).text() );
-	});  
+	$( ".piano-note" ).each(function( index ) {
+		if(parseInt($(this).val()) == value){
+			var ind = parseInt($(this).val())
+			for(x in activeChord){
+				console.log(ind)
+				console.log(activeChord[x])
+				if(ind == activeChord[x]){
+					resetKey($(this))
+				}
+			}
+		}
+	}); 
+	return false; 
 };
 function applySettings(){
 	closeNav()
@@ -173,6 +229,7 @@ function randomize() {
 			currentChordName = currentChordsNames[currentChordIndex]
 			currentChordNotes = currentChordsNotes[currentChordIndex]
 			console.log(currentChordNotes)
+			createCorrectChord(currentChordNotes)
 		}
 	})
 	// console.log(currentScaleName)
@@ -243,8 +300,8 @@ function showScales(notesArray){
 	$( ".piano-note" ).each(function( index ) {
 		for(x in notesArray){
 			var note = notesArray[x];
-			var firstNote = ($(this).text()).substring(0,2)
-			var secondNote = ($(this).text()).substring(3,5)
+			// var firstNote = ($(this).text()).substring(0,2)
+			// var secondNote = ($(this).text()).substring(3,5)
 			// console.log(firstNote)
 			// console.log(secondNote)
 			if($(this).hasClass(note)){
@@ -294,11 +351,33 @@ function resetKeys(){
 		}
 	})
 }
+function resetKey(element){
+	if(element.hasClass("black-key")){
+		element.css("background-color", "#343a40")
+		element.removeClass( "selected-key" );
+	}
+	if(element.hasClass("white-key")){
+		element.css("background-color", "#f8f9fa")
+		element.removeClass( "selected-key" );
+	}																						
+}
 function correctKeys(){
 	$( ".selected-key" ).each(function( index ) {
 		$( this ).css("background-color", "rgb(0,225,0)")
 		$( this ).addClass( "selected-key" );
 	})
+}
+function incorrectKeys(){
+	$( ".selected-key" ).each(function( index ) {
+		$( this ).css("background-color", "rgb(225,0,0)")
+		$( this ).addClass( "selected-key" );
+	})
+}
+function correctAnswer(){
+	numberCorrect++
+}
+function wrongAnswer(){
+	numberIncorrect++
 }
 function checkAnswer(){
 	var numSelected = 0;
@@ -307,6 +386,7 @@ function checkAnswer(){
 	$("#numQuestions").html(numQuestions);
 	if($(".selected-key")){
 		$( ".selected-key" ).each(function( index ) {
+
 			numSelected++;
 			console.log($(this).text())
 			for(x in currentChordNotes){
@@ -320,18 +400,27 @@ function checkAnswer(){
 		})
 		if(numSelected == numCorrect && numSelected>0){
 			console.log("CORRECT!")
-			numberCorrect++
 			$("#correct").html(numberCorrect);
-			correctKeys();
-			
+			correctAnswer();
+			correctKeys()
+			if(autoNext){
+				setTimeout( function() {
+				    randomize();
+				  }, 750);
+			}
 		}
 		else{
 			console.log("Try AGAIN!")
-			numberIncorrect++;
+			// numberIncorrect++;
+			wrongAnswer();
+			incorrectKeys();
 			$("#incorrect").html(numberIncorrect);
-			resetKeys();
+			setTimeout( function() {
+			    resetKeys();
+			  }, 500);
 		}
 	}
+	activeChord = [];
 };
 $('.scaleCheck').change(function() {
     // this will contain a reference to the checkbox   
@@ -383,6 +472,7 @@ $('.chordCheck').change(function() {
     	$("#majorsevenths").prop('checked', false);
     	$("#minorsevenths").prop('checked', false);
     	$("#diminishedsevenths").prop('checked', false);
+    	$("#dominantsevenths").prop('checked', false);
     	for(var j = 0; j<4; j++){
     		for(var i = 0; i<chordTypeSelectionArray.length;i++){
 	        	if(chordTypeSelectionArray[i]=="majorsevenths" || chordTypeSelectionArray[i] == "minorsevenths"|| chordTypeSelectionArray[i]=="diminishedsevenths" || chordTypeSelectionArray[i] == "dominantsevenths"){
@@ -418,6 +508,42 @@ $('.chordCheck').change(function() {
         }
     }
     console.log(chordTypeSelectionArray)
+});
+$('#midiMode').change(function() {
+	if(this.checked){
+		midiMode = true;
+		console.log(midiMode)
+	}
+	else{
+		midiMode = false;
+	}
+});
+$('#scaleMode').change(function() {
+	if(this.checked){
+		scaleMode = true;
+		console.log(scaleMode)
+	}
+	else{
+		scaleMode = false;
+	}
+});
+$('#autoCheck').change(function() {
+	if(this.checked){
+		autoCheck = true;
+		console.log(autoCheck)
+	}
+	else{
+		autoCheck = false;
+	}
+});
+$('#autoNext').change(function() {
+	if(this.checked){
+		autoNext = true;
+		console.log(autoNext)
+	}
+	else{
+		autoNext = false;
+	}
 });
 
 // 343a40
