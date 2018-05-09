@@ -204,12 +204,12 @@
                   Midi Mode
                 </label>
               </div>
-              <div class="form-check">
+              <!-- <div class="form-check">
                 <input class="form-check-input settingCheck" type="checkbox"  value="" id = "scaleMode">
                 <label class="form-check-label" for="defaultCheck1">
                   Scale Mode
                 </label>
-              </div>
+              </div> -->
               <div class="form-check">
                 <input class="form-check-input settingCheck" type="checkbox"  value="" id = "autoCheck">
                 <label class="form-check-label" for="defaultCheck1">
@@ -220,6 +220,12 @@
                 <input class="form-check-input settingCheck" type="checkbox"  value="" id = "autoNext">
                 <label class="form-check-label" for="defaultCheck1">
                   Auto-Next
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input settingCheck" type="checkbox"  value="" id = "infiniteMode">
+                <label class="form-check-label" for="defaultCheck1">
+                  Infinite Mode
                 </label>
               </div>
             </div>
@@ -286,7 +292,7 @@
         </div>
         <div>
           <div class = "statContainer">
-            <h2>Incorrect</h2>
+            <h2>Attempts</h2>
             <div class = "stat" id = "incorrectDiv">
               <h3 id = "incorrect">0</h3>
             </div>
@@ -295,7 +301,7 @@
       </div>
       <button type="button" class="btn btn-warning showAnswer" onclick="updateKeys()">Show Answer</button>
       <button type="button" class="btn btn-success checkAnswer" onclick="checkAnswer()">Check Answer</button>
-      <button type="button" class="btn btn-warning next" onclick="randomize()">Skip</button>
+      <button type="button" class="btn btn-warning next" onclick="skipQuestion()">Skip</button>
       <div id = "answeredStats">
         <div>
           <div class = "statContainer">
@@ -309,7 +315,7 @@
           <div class = "statContainer">
             <h2>Remaining</h2>
             <div class = "stat" id = "numQuestionsDiv">
-              <h3 id = "numQuestions">0</h3>
+              <h3 id = "remaningQuestions">0</h3>
             </div>
           </div>
         </div>

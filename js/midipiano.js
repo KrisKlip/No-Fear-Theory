@@ -24,8 +24,8 @@ function setKeyValues(value){
 			// console.log(note)
 			if ($(this).hasClass(currentKey)){
 				$(this).val(i+value-1)
-				console.log("value set")
-				console.log($(this).val())
+				// console.log("value set")
+				// console.log($(this).val())
 			}
 		};
 	});
@@ -37,9 +37,9 @@ function findNoteValue (note){
 		var value = $(this).val();
 		if($(this).hasClass(note)){
 			// console.log(note);
-			console.log(typeof(value))
+			// console.log(typeof(value))
 			value = parseInt(value);
-			console.log(typeof(value))
+			// console.log(typeof(value))
 			correctChord.push(value);
 			// if($.inArray(value, correctChord)){
 			// 	correctChord.push(value);
@@ -60,7 +60,7 @@ function createCorrectChord(array){
 		// 	// console.log(correctChord)
 		// }
 	}
-	console.log(correctChord)
+	// console.log(correctChord)
 }
 function upOctave(){
 	octaveValue= value + 10;
@@ -145,7 +145,7 @@ function triggerKeyOff(note){
 
 function noteOnListener(note, velocity) {
 	var alreadySelected = false;
-	console.log(note)
+	// console.log(note)
 	for(x in activeChord){
 		if(note == activeChord[x]){
 			alreadySelected = true;
@@ -156,7 +156,7 @@ function noteOnListener(note, velocity) {
 	
 	if(alreadySelected == false){
 		triggerKeyOn(note);
-		console.log("note on")
+		// console.log("note on")
 		addActiveChord(note)
 	}
 	
@@ -261,7 +261,7 @@ function noteOffListener(note) {
 	if(scaleMode){
 		triggerKeyOff(note);
 	}
-	console.log("note off")
+	// console.log("note off")
 
 	// switch(currentStep) {
 	// 	case 2:

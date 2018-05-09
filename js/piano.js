@@ -11,7 +11,6 @@ $(document).ready(function() {
 	$(".not-first").css("margin-left", blackKeyWidth*0.25)
 
 	$( window ).resize(function() {
-		// console.log($(".container").outerWidth());
 		var pianoWidth = $(".container").outerWidth();
 		var factor = 1/15;
 		var whiteKeyWidth = pianoWidth/15;
@@ -39,9 +38,7 @@ $(document).ready(function() {
 				addActiveChord($(this).val())
 			}
 			
-		}
-		// checkSelected();
-		
+		}	
 	});
 	$(".white-key").click(function() {
 		if($( this ).css("background-color") == "rgb(0, 0, 255)"){
@@ -58,21 +55,13 @@ $(document).ready(function() {
 				addActiveChord($(this).val())
 			}
 		}
-		// checkSelected();
-		
 	});	
 
 	$( ".scaleCheck" ).each(function( index ) {
-		// console.log($(this).val())
 		for(var i =0; i<scaleSelectionArray.length;i++){
-			// console.log($(this).val())
-			// console.log(scaleSelectionArray[i])
 			if($(this).val() == scaleSelectionArray[i]){
 				$(this).prop('checked', true);
 			}
-			// else{
-			// 	$(this).prop('checked', false);
-			// }
 		}
 	})
 	$( ".chordCheck" ).each(function( index ) {
@@ -81,14 +70,17 @@ $(document).ready(function() {
 			if($(this).val() == chordTypeSelectionArray[i]){
 				$(this).prop('checked', true);
 			}
-			// else{
-			// 	$(this).prop('checked', false);
-			// }
 		}
 	})
-	// $("#autoCheck").prop('checked', true);
-	// $("#autoNext").prop('checked', true);
-	randomize();
+	$( "#autoCheck" ).each(function( index ) {
+		console.log($(this).val())
+		$(this).prop('checked', true);
+	})
+	$( "#autoNext" ).each(function( index ) {
+		console.log($(this).val())
+		$(this).prop('checked', true);
+	})
+	initializeQuestions();
 });
 
 var currentScaleIndex;
@@ -109,15 +101,22 @@ var currentSharps;
 var currentFlats;
 var allScales = [];
 var numberCorrect = 0;
-var numberIncorrect = 0;
+var totalAttempts = 0;
 var numQuestions = 0;
-var scaleSelectionArray = ["c", "g"]
-var chordTypeSelectionArray = ["sevenths","majortriads","minortriads","diminishedtriads"];
+var scaleSelectionArray = ["f", "a"]
+var chordTypeSelectionArray = ["sevenths","triads"];
+var answeredQuestions = []
+var numberOfQuestions = 0;
+var numberAnsweredIncorrect = 0;
+var questionAttempts = 3;
 
 var midiMode = false;
 var scaleMode = false;
-var autoCheck = false;
-var autoNext = false;
+var autoCheck = true;
+var autoNext = true;
+var infiniteMode = false;
+var showingScales = false;
+var gameOver = false;
 
 function findRandomChord(string) {
 	console.log(string)
@@ -168,7 +167,7 @@ function checkSelected(value) {
 };
 function applySettings(){
 	closeNav()
-	randomize();
+	initializeQuestions();
 }
 
 function randomize() {
@@ -181,23 +180,20 @@ function randomize() {
 	currentChordsList = [];
 	currentChordsNames = [];
 	currentChordsNotes = [];
+	numberOfQuestions = 0;
 	var scales = theory.scales
 	Object.keys(scales).forEach(function(key1) {
-		// console.log(key1)
 		for(var i =0; i<scaleSelectionArray.length;i++){
 			if(key1 == scaleSelectionArray[i]){
 				allScales.push(key1)
 			}
 		}
-		// console.log(allScales)
 	});
 	var randScaleIndex = Math.floor(Math.random() * allScales.length);     // returns a number between 0 and 9
 	currentScaleIndex = randScaleIndex;
 	currentScaleName = allScales[currentScaleIndex]
 	Object.keys(scales).forEach(function(key1) {
 		if(key1 == currentScaleName){
-			// var triads = scales[key1].triads
-			// var sevenths = scales[key1].sevenths
 			currentNumFlats = scales[key1].numOfFlats
 			currentNumSharps = scales[key1].numOfSharps
 			for(var i = 0; i<chordTypeSelectionArray.length; i++){
@@ -208,42 +204,129 @@ function randomize() {
 							var currentChord = chordType[key2];
 							currentChordsNames.push(key3);
 							currentChordsNotes.push(currentChord[key3])
+							numberOfQuestions++;
 						})
 					}
 				})
-				// Object.keys(triads).forEach(function(key2) {
-				// 	console.log(scales[key1])
-				// 	currentTriadList.push(key2);
-				// 	currentScaleTriads.push(triads[key2])
-				// })
-				// Object.keys(sevenths).forEach(function(key2) {
-				// 	currentSeventhsList.push(key2);
-				// 	currentScaleSevenths.push(sevenths[key2])
-				// })
 			}
-			
-			// addToChordNameArray(currentTriadList)
-			// addToChordNameArray(currentSeventhsList)
-			// addToChordNotesArray(currentScaleTriads)
-			// addToChordNotesArray(currentScaleSevenths)
-			var randChordIndex = Math.floor(Math.random() * currentChordsNames.length);     // returns a number between 0 and 9
-			currentChordIndex = randChordIndex
-			currentChordName = currentChordsNames[currentChordIndex]
-			currentChordNotes = currentChordsNotes[currentChordIndex]
-			console.log(currentChordNotes)
-			createCorrectChord(currentChordNotes)
 		}
 	})
-	// console.log(currentScaleName)
+	console.log(currentChordsNames.length);
+}
+function selectRandomChord(){
+	var randChordIndex = Math.floor(Math.random() * currentChordsNames.length);     // returns a number between 0 and 9
+	currentChordIndex = randChordIndex
+	currentChordName = currentChordsNames[currentChordIndex]
+	currentChordNotes = currentChordsNotes[currentChordIndex]
+	console.log(currentChordNotes)
+	createCorrectChord(currentChordNotes)
 	currentChordName = changeChordName(currentChordName);
-	// console.log(currentChordNotes);
+}
+function nextQuestion(){
+	spliceFromArray();
+	// console.log(currentChordsNames)
+	checkIfGameOver();
+	console.log(findRemainingQuestions(numberOfQuestions))
+	if(!gameOver){
+		selectRandomChord();
+		updateUI();
+		if(!infiniteMode){
+			answeredQuestions.push(currentChordNotes);
+		}
+		resetAttempts();
+		updateStats();
+	}
+}
+function skipQuestion(){
+	selectRandomChord();
+	checkIfGameOver();
+	updateUI();
+}
+function resetAllVariables(){
+	numberCorrect = 0;
+	totalAttempts = 0;
+	numQuestions = 0;
+	answeredQuestions = []
+	numberOfQuestions = 0;
+	numberAnsweredIncorrect = 0;
+	questionAttempts = 3;
+	activeChord = [];
+
+}
+function initializeQuestions(){
+	resetKeys();
+	resetAllVariables();
+	randomize();
+	selectRandomChord();
+	checkIfGameOver();
+	if(!infiniteMode){
+		answeredQuestions.push(currentChordNotes);
+	}
+	numQuestions = 0;
+	resetStats();
+	updateUI();
+	updateStats();
+}
+function checkIfGameOver(){
+	var remaningQs = parseInt(findRemainingQuestions(numberOfQuestions));
+	if(remaningQs<2){
+		updateStats();
+		resetKeys();
+		$("#current").html("Well Done!");
+		gameOver = true;
+	}
+}
+function updateUI(){
 	updateText(currentChordName);
 	resetKeys();
+}
+function updateStats(){
+	var totalQuestions = findRemainingQuestions(numberOfQuestions) * scaleSelectionArray.length;
+	if(numberOfQuestions && !infiniteMode){
+		$("#remaningQuestions").html(totalQuestions);
+	}
+	if(infiniteMode){
+		$("#remaningQuestions").html("");
+	}
+	$("#correct").html(numberCorrect);
+	$("#numQuestions").html(numQuestions);
+	$("#incorrect").html(questionAttempts);
+}
+function checkIfAnySelected(){
+	var anySelected = false;
+	$( ".piano-note" ).each(function( index ) {
+		if($(this).hasClass("selected-key")){
+			anySelected = true;
+		}
+	})
+	if(anySelected){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+function findRemainingQuestions(value){
+	var remaining = value - answeredQuestions.length;
+	return remaining;
 }
 function addToChordNameArray(array){
 	for(var i = 0; i<array.length;i++){
 		currentChordsNames.push(array[i])
 	}
+}
+function spliceFromArray(){
+	// for(x in answeredQuestions){
+	// 	for (y in currentChordsNames){
+	// 		if(answeredQuestions[x] == changeChordName(currentChordsNames[y])){
+	// 			currentChordsNames.splice(y,1)
+	// 			currentChordsNotes.splice(y,1)
+	// 		}
+	// 	}
+	// 	// if(answeredQuestions[x])
+	// }
+	currentChordsNames.splice(currentChordIndex, 1)
+	currentChordsNotes.splice(currentChordIndex, 1)
 }
 function addToChordNotesArray(array){
 	for(var i = 0; i<array.length;i++){
@@ -257,7 +340,6 @@ function changeChordName(chordName){
 	var index = index -1;
 	if(chordName == 1 || chordName == 4){
 		name = currentChordNotes[0].charAt(0).toUpperCase() + currentChordNotes[0].charAt(1) + "Maj"
-		// console.log(name);
 	}
 	if(chordName == 5){
 		if(currentChordNotes.length< 4){
@@ -266,15 +348,12 @@ function changeChordName(chordName){
 		else{
 			name = currentChordNotes[0].charAt(0).toUpperCase() + currentChordNotes[0].charAt(1)
 		}
-		// console.log(name);
 	}
 	if(chordName == 2 || chordName == 3 || chordName == 6){
 		name = currentChordNotes[0].charAt(0).toUpperCase() + currentChordNotes[0].charAt(1) + "Min"
-		// console.log(name);
 	}
 	if(chordName == 7){
 		name = currentChordNotes[0].charAt(0).toUpperCase() + currentChordNotes[0].charAt(1) + "Dim"
-		// console.log(name);
 	}
 	if(currentChordNotes.length > 3){
 		name = name + "7"
@@ -299,47 +378,23 @@ function showScales(notesArray){
 	console.log("working")
 	resetKeys();
 	var count = 0;
-	$( ".piano-note" ).each(function( index ) {
-		for(x in notesArray){
-			var note = notesArray[x];
-			// var firstNote = ($(this).text()).substring(0,2)
-			// var secondNote = ($(this).text()).substring(3,5)
-			// console.log(firstNote)
-			// console.log(secondNote)
-			if($(this).hasClass(note)){
-				$( this ).css("background-color", "rgb(0, 0, 255)")
-				$( this ).addClass( "selected-key" );
+	if(!showingScales){
+		$( ".piano-note" ).each(function( index ) {
+			for(x in notesArray){
+				var note = notesArray[x];
+				if($(this).hasClass(note)){
+					$( this ).css("background-color", "rgb(0, 0, 255)")
+					$( this ).addClass( "selected-key" );
+				}
 			}
-
-			// else{
-			// 	$( this ).css("background-color", "#f8f9fa")
-			// 	$( this ).removeClass( "selected-key" );
-			// }
-		}
-	  
-	});  
-
-	// var currentArray = notesArray
-	// var count = 0;
-	// var note = currentArray[0];
-	// $( ".piano-note" ).each(function( index ) {
-	// 	// console.log(nte);
-	// 	for (var i = 1; i <26; i++) {
-	// 		var currentKey = i.toString();
-	// 		// console.log(note)
-	// 		if ($(this).hasClass(currentKey)){
-	// 			console.log($(this).class)
-	// 			// console.log("true")
-	// 			if($(this).hasClass(note)){
-	// 				console.log("true")
-	// 				$( this ).css("background-color", "rgb(0, 0, 255)")
-	// 				$( this ).addClass( "selected-key" );
-	// 				currentArray.splice(0,1);
-	// 				note = currentArray[0];
-	// 			}
-	// 		}
-	// 	};
-	
+		  
+		});
+		showingScales = true;
+	}  
+	else{
+		resetKeys();
+		showingScales = false;
+	}
 }
 function resetKeys(){
 	$( ".selected-key" ).each(function( index ) {
@@ -378,52 +433,73 @@ function incorrectKeys(){
 function correctAnswer(){
 	numberCorrect++
 }
-function wrongAnswer(){
-	numberIncorrect++
+function incorrectAttempt(){
+	totalAttempts++
+	questionAttempts--
 }
 function checkAnswer(){
+	if(showingScales){
+		resetKeys();
+		showingScales = false;
+		return;
+	}
+	if(gameOver){
+		gameOver = false;
+		initializeQuestions()
+		return false;
+	}
 	var numSelected = 0;
 	var numCorrect = 0;
-	numQuestions++;
-	$("#numQuestions").html(numQuestions);
-	if($(".selected-key")){
+	var selected = checkIfAnySelected();
+	console.log("selectec =" + selected)
+	if(selected){
 		$( ".selected-key" ).each(function( index ) {
 
 			numSelected++;
 			console.log($(this).text())
 			for(x in currentChordNotes){
 				var note = currentChordNotes[x];
-				// console.log(firstNote)
-				// console.log(secondNote)
 				if($(this).hasClass(note)){
 					numCorrect ++;
 				}
 			}
 		})
 		if(numSelected == numCorrect && numSelected>0){
+			numQuestions++;
 			console.log("CORRECT!")
-			$("#correct").html(numberCorrect);
 			correctAnswer();
 			correctKeys()
 			if(autoNext){
 				setTimeout( function() {
-				    randomize();
+				    nextQuestion();
+				    resetAttempts();
 				  }, 750);
 			}
 		}
 		else{
 			console.log("Try AGAIN!")
-			// numberIncorrect++;
-			wrongAnswer();
+			incorrectAttempt();
 			incorrectKeys();
-			$("#incorrect").html(numberIncorrect);
 			setTimeout( function() {
-			    resetKeys();
+			    if(questionAttempts<1){
+					numberAnsweredIncorrect++;
+					numQuestions++;
+					nextQuestion();
+					resetAttempts();
+					updateUI();
+				}
+				else{
+					resetKeys();
+				}
 			  }, 500);
 		}
 	}
+	updateStats();
 	activeChord = [];
 };
+function resetAttempts(){
+	questionAttempts = 3;
+}
 $('.scaleCheck').change(function() {
     // this will contain a reference to the checkbox   
     var value = $(this).val();
@@ -547,6 +623,18 @@ $('#autoNext').change(function() {
 		autoNext = false;
 	}
 });
+function resetStats(){
+	answeredQuestions = [];
+	numberCorrect = 0;
+	totalAttempts = 0;
+}
+$('#infiniteMode').change(function() {
+	if(this.checked){
+		infiniteMode = true;
+		console.log(infiniteMode)
 
-// 343a40
-// f8f9fa
+	}
+	else{
+		infiniteMode = false;
+	}
+});
