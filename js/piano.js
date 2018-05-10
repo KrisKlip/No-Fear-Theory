@@ -103,12 +103,14 @@ var allScales = [];
 var numberCorrect = 0;
 var totalAttempts = 0;
 var numQuestions = 0;
-var scaleSelectionArray = ["f", "a"]
+var scaleSelectionArray = ["f"]
 var chordTypeSelectionArray = ["sevenths","triads"];
 var answeredQuestions = []
 var numberOfQuestions = 0;
 var numberAnsweredIncorrect = 0;
 var questionAttempts = 3;
+var totalQuestions = 0;
+var remainingQuestions = 0;
 
 var midiMode = false;
 var scaleMode = false;
@@ -117,6 +119,7 @@ var autoNext = true;
 var infiniteMode = false;
 var showingScales = false;
 var gameOver = false;
+var timerEnd = false;
 
 function findRandomChord(string) {
 	console.log(string)
@@ -129,6 +132,7 @@ function addActiveChord(value){
 	}
 	console.log(activeChord)
 // 		// If the array is the same length as the correct chord, compare
+	console.log("activeChord length = " + activeChord.length + " " + "currentChordNotes Length = " + currentChordNotes.length)
 	if (activeChord.length == currentChordNotes.length) {
 		var match = true;
 		checkAnswer();
@@ -189,45 +193,56 @@ function randomize() {
 			}
 		}
 	});
-	var randScaleIndex = Math.floor(Math.random() * allScales.length);     // returns a number between 0 and 9
+	var randScaleIndex = Math.floor(Math.random());     // returns a number between 0 and 9
 	currentScaleIndex = randScaleIndex;
-	currentScaleName = allScales[currentScaleIndex]
-	Object.keys(scales).forEach(function(key1) {
-		if(key1 == currentScaleName){
-			currentNumFlats = scales[key1].numOfFlats
-			currentNumSharps = scales[key1].numOfSharps
-			for(var i = 0; i<chordTypeSelectionArray.length; i++){
-				var chordType = scales[key1];
-				Object.keys(chordType).forEach(function(key2) {
-					if(key2 == chordTypeSelectionArray[i]){
-						Object.keys(chordType[key2]).forEach(function(key3) {
-							var currentChord = chordType[key2];
-							currentChordsNames.push(key3);
-							currentChordsNotes.push(currentChord[key3])
-							numberOfQuestions++;
-						})
-					}
-				})
+	// currentScaleName = allScales[currentScaleIndex]
+	for(x in allScales){
+		currentScaleName = allScales[x]
+		Object.keys(scales).forEach(function(key1) {
+			if(key1 == currentScaleName){
+				currentNumFlats = scales[key1].numOfFlats
+				currentNumSharps = scales[key1].numOfSharps
+				for(var i = 0; i<chordTypeSelectionArray.length; i++){
+					var chordType = scales[key1];
+					Object.keys(chordType).forEach(function(key2) {
+						if(key2 == chordTypeSelectionArray[i]){
+							Object.keys(chordType[key2]).forEach(function(key3) {
+								var currentChord = chordType[key2];
+								currentChordsNames.push(key3);
+								currentChordsNotes.push(currentChord[key3])
+								numberOfQuestions++;
+							})
+						}
+					})
+				}
 			}
-		}
-	})
-	console.log(currentChordsNames.length);
+		})
+
+	}
+	// console.log(currentChordsNames.length);
+	console.log("chords notes = " + currentChordsNotes)
+	console.log("chords notes = " + currentChordsNotes.length)
+	console.log("chords names = " + currentChordsNames)
+	console.log("chords names = " + currentChordsNames.length)
 }
 function selectRandomChord(){
 	var randChordIndex = Math.floor(Math.random() * currentChordsNames.length);     // returns a number between 0 and 9
+	console.log("randChordIndex = " + randChordIndex)
+	// console.log("chords notes = " + currentChordsNotes)
+	// console.log("chords notes = " + currentChordsNames)
 	currentChordIndex = randChordIndex
 	currentChordName = currentChordsNames[currentChordIndex]
 	currentChordNotes = currentChordsNotes[currentChordIndex]
-	console.log(currentChordNotes)
 	createCorrectChord(currentChordNotes)
 	currentChordName = changeChordName(currentChordName);
+	console.log("current chord notes = " + currentChordNotes)
 }
 function nextQuestion(){
 	spliceFromArray();
-	// console.log(currentChordsNames)
 	checkIfGameOver();
 	console.log(findRemainingQuestions(numberOfQuestions))
 	if(!gameOver){
+		console.log("sdkjfskdhfksjdhfkjshdfkjh")
 		selectRandomChord();
 		updateUI();
 		if(!infiniteMode){
@@ -236,6 +251,8 @@ function nextQuestion(){
 		resetAttempts();
 		updateStats();
 	}
+	console.log(answeredQuestions.length)
+	console.log(numberOfQuestions)
 }
 function skipQuestion(){
 	selectRandomChord();
@@ -254,39 +271,52 @@ function resetAllVariables(){
 
 }
 function initializeQuestions(){
+	console.log("inintialize")
 	resetKeys();
 	resetAllVariables();
+	resetStats();
 	randomize();
 	selectRandomChord();
+	totalQuestions = (findRemainingQuestions(numberOfQuestions))+1;
+	remainingQuestions = totalQuestions
 	checkIfGameOver();
 	if(!infiniteMode){
 		answeredQuestions.push(currentChordNotes);
 	}
 	numQuestions = 0;
-	resetStats();
 	updateUI();
 	updateStats();
+	startTimer();
+	console.log("total questions = " + totalQuestions)
+	console.log("remaining questions = " + remainingQuestions)
+	console.log("active chord = " + activeChord)
+
+
 }
 function checkIfGameOver(){
-	var remaningQs = parseInt(findRemainingQuestions(numberOfQuestions));
-	if(remaningQs<2){
+	var remainingQs = remainingQuestions;
+	if(remainingQs<2){
+		gameOver = true;
+		answeredQuestions.push(currentChordNotes);
+		numQuestions++;
+		console.log("game over")
 		updateStats();
 		resetKeys();
 		$("#current").html("Well Done!");
-		gameOver = true;
 	}
 }
 function updateUI(){
+	console.log("update UI")
 	updateText(currentChordName);
 	resetKeys();
 }
 function updateStats(){
-	var totalQuestions = findRemainingQuestions(numberOfQuestions) * scaleSelectionArray.length;
+	remainingQuestions = totalQuestions - answeredQuestions.length
 	if(numberOfQuestions && !infiniteMode){
-		$("#remaningQuestions").html(totalQuestions);
+		$("#remainingQuestions").html(remainingQuestions);
 	}
 	if(infiniteMode){
-		$("#remaningQuestions").html("");
+		$("#remainingQuestions").html("");
 	}
 	$("#correct").html(numberCorrect);
 	$("#numQuestions").html(numQuestions);
@@ -448,6 +478,15 @@ function checkAnswer(){
 		initializeQuestions()
 		return false;
 	}
+	if(timerEnd){
+		if(gameOver){
+			return false;
+		}
+		else{
+			console.log("timerEnd")
+			incorrectAndNext();
+		}
+	}
 	var numSelected = 0;
 	var numCorrect = 0;
 	var selected = checkIfAnySelected();
@@ -482,11 +521,7 @@ function checkAnswer(){
 			incorrectKeys();
 			setTimeout( function() {
 			    if(questionAttempts<1){
-					numberAnsweredIncorrect++;
-					numQuestions++;
-					nextQuestion();
-					resetAttempts();
-					updateUI();
+					incorrectAndNext();
 				}
 				else{
 					resetKeys();
@@ -497,6 +532,15 @@ function checkAnswer(){
 	updateStats();
 	activeChord = [];
 };
+function incorrectAndNext(){
+	console.log("incorrectAndNext")
+	numberAnsweredIncorrect++;
+	numQuestions++;
+	nextQuestion();
+	resetAttempts();
+	updateUI();
+	resetTimer();
+}
 function resetAttempts(){
 	questionAttempts = 3;
 }
@@ -585,7 +629,7 @@ $('.chordCheck').change(function() {
         	}
         }
     }
-    console.log(chordTypeSelectionArray)
+    // console.log(chordTypeSelectionArray)
 });
 $('#midiMode').change(function() {
 	if(this.checked){

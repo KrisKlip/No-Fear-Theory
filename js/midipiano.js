@@ -3,7 +3,7 @@
 // var currentStep = 0;
 
 // Timer length
-// var timerLength = 1; // in minutes
+var timerLength = 2; // in minutes
 
 // Lock 1 variables
 // var correctNoteSequence = [60, 65, 69, 65, 69, 67, 65, 62, 60]; // Amazing Grace in F
@@ -317,37 +317,51 @@ function noteOffListener(note) {
 // 	}, 2500);
 // }
 
-// function startTimer(){
-//   // set timer for 60 minutes from start
-//   var now = new Date();
-//   timeEnd = new Date(now.getTime() + (timerLength*60*1000) - 1);
+function startTimer(){
+  // set timer for 60 minutes from start
+  var now = new Date();
+  timeEnd = new Date(now.getTime() + (timerLength*1000) - 1);
 
-//   updateTimer();
-// }
-// /**
-//  * Function to update the time remaining every second
-//  */
-// function updateTimer() {
-// 	var now = new Date();
-// 	var distance = timeEnd.getTime() - now.getTime();
-// 	var minutes = Math.floor(distance / (1000 * 60));
-// 	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  updateTimer();
+}
+/**
+ * Function to update the time remaining every second
+ */
+function updateTimer() {
+	var now = new Date();
+	var distance = timeEnd.getTime() - now.getTime();
+	var minutes = Math.floor(distance / (1000 * 60));
+	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-// 	if (minutes < 10) minutes = "0" + minutes;
-// 	if (seconds < 10) seconds = "0" + seconds;
+	if (minutes < 10) minutes = "0" + minutes;
+	if (seconds < 10) seconds = "0" + seconds;
 
-// 	if (currentStep < 3) {
-// 		document.querySelector('#countdown').innerText = minutes + ":" + seconds;
+	// if (currentStep < 3) {
+		document.querySelector('#countdown').innerText = minutes + ":" + seconds;
 		
-// 		if (minutes > 0 || seconds > 0) {
-// 			window.setTimeout(function() {
-// 				updateTimer();
-// 			}, 1000);
-// 		} else if (minutes == 0 && seconds == 0) {
-// 			runSequence('gameover');
-//   		}
-// 	}  
-// }
+		if (minutes > 0 || seconds > 0) {
+			window.setTimeout(function() {
+				updateTimer();
+			}, 1000);
+		} else if (minutes == 0 && seconds == 0) {
+			timerEnd = true;
+			if(gameOver || remainingQuestions < 2){
+				console.log("timerStopped")
+				checkIfGameOver();
+				return false;
+			}
+			else{
+				console.log("answerChecked again")
+				checkAnswer();
+			}
+			///////GAME OVER!
+  		}
+	// }  
+}
+function resetTimer(){
+	timerEnd = false;
+	startTimer();
+}
 
 // var lockInput = document.querySelector('.step2 .lock-input');
 // lockInput.addEventListener('click', function(){
