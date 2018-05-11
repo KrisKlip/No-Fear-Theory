@@ -120,6 +120,7 @@ var infiniteMode = false;
 var showingScales = false;
 var gameOver = false;
 var timerEnd = false;
+var timerMode = false;
 
 function findRandomChord(string) {
 	console.log(string)
@@ -317,6 +318,12 @@ function updateStats(){
 	}
 	if(infiniteMode){
 		$("#remainingQuestions").html("");
+	}
+	if(timerMode){
+		$("#countdown").css("display", "block")
+	}
+	else{
+		$("#countdown").css("display", "none")
 	}
 	$("#correct").html(numberCorrect);
 	$("#numQuestions").html(numQuestions);
@@ -536,7 +543,13 @@ function incorrectAndNext(){
 	console.log("incorrectAndNext")
 	numberAnsweredIncorrect++;
 	numQuestions++;
-	nextQuestion();
+	if(infiniteMode){
+		skipQuestion();
+		console.log("skipMode")
+	}
+	else{
+		nextQuestion();
+	}
 	resetAttempts();
 	updateUI();
 	resetTimer();
@@ -680,5 +693,15 @@ $('#infiniteMode').change(function() {
 	}
 	else{
 		infiniteMode = false;
+	}
+});
+$('#timerMode').change(function() {
+	if(this.checked){
+		timerMode = true;
+		console.log(timerMode)
+
+	}
+	else{
+		timerMode = false;
 	}
 });

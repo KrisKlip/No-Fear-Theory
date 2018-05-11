@@ -3,7 +3,7 @@
 // var currentStep = 0;
 
 // Timer length
-var timerLength = 2; // in minutes
+var timerLength = 30; // in minutes
 
 // Lock 1 variables
 // var correctNoteSequence = [60, 65, 69, 65, 69, 67, 65, 62, 60]; // Amazing Grace in F
@@ -341,7 +341,9 @@ function updateTimer() {
 		
 		if (minutes > 0 || seconds > 0) {
 			window.setTimeout(function() {
-				updateTimer();
+				if(timerMode){
+					updateTimer();
+				}
 			}, 1000);
 		} else if (minutes == 0 && seconds == 0) {
 			timerEnd = true;
